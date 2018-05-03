@@ -1,0 +1,32 @@
+<aura:component controller="PublicContactFormController">
+    
+    <!--Attributes-->
+    <aura:attribute name="personCnt" type="Decimal" default="1"/>
+    <aura:attribute name="showSpinner" type="Boolean" default="false" />
+    <aura:attribute name="showMessage" type="Boolean" default="false" />
+    <aura:attribute name="showForm" type="Boolean" default="true" />
+    <aura:attribute name="message" type="String" />
+    <aura:handler name="addFormEvent" event="c:addLeadFormEvent" action="{!c.handleAddLeadEvent}"/>
+    
+    
+    <aura:if isTrue="{!v.showSpinner}" aura:id="spinnerSection">
+        <lightning:spinner aura:id="spinner" variant="brand"/>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.showMessage}" aura:id="messageSection">
+        <ui:message aura:id="uiMsg">{!v.message}</ui:message>
+    </aura:if>
+    
+    <aura:if isTrue="{!v.showForm}" aura:id="formSection">
+        <h1 class="large-font">Sign-up Form</h1>
+        <br/><br/><br/>
+        <lightning:button variant="brand" label="Save" onclick="{!c.saveLeadsClick}"/>
+        <br/><br/>
+        Number of People: {!v.personCnt}
+        <br/><br/>
+        <c:PublicFormNewLeadComp aura:id="cntFrm1" count="1"/>
+        
+        {!v.body}
+    </aura:if>
+    
+</aura:component>

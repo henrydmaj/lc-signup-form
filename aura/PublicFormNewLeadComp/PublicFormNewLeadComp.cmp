@@ -1,0 +1,39 @@
+<aura:component >
+    <aura:attribute name="count" type="Decimal" />
+    <aura:attribute name="newLead" type="Lead" default="{'sobjectType':'Lead'}"/>
+    <aura:attribute name="showAddLeadBtn" type="Boolean" default="true"/>
+    <aura:attribute name="showRemoveLeadBtn" type="Boolean" default="false"/>
+    <aura:attribute name="showMsg" type="Boolean" default="false"/>
+    <aura:attribute name="errMsg" type="String" />
+    
+    <aura:registerEvent name="addFormEvent" type="c:addLeadFormEvent"/>    
+    
+    <lightning:card >
+        <aura:set attribute="title">
+            New Sign-up ({!v.count})
+        </aura:set>
+        
+        <lightning:recordEditForm objectApiName="Lead" aura:id="leadEdit">
+            <!--<lightning:messages />-->
+            <aura:if isTrue="{!v.showMsg}" >
+                <ui:message aura:id="msg" severity="warning" class="font-bold">{!v.errMsg}</ui:message>
+            </aura:if>
+            <lightning:input label="First Name" value="{!v.newLead.FirstName}" required="true"/>
+            <lightning:input label="Last Name" value="{!v.newLead.LastName}" required="true"/>
+            <lightning:input label="Company" value="{!v.newLead.Company}" required="true"/>
+            <lightning:input label="Email" value="{!v.newLead.Email}" required="true"/>
+            <lightning:input label="Phone" value="{!v.newLead.Phone}" required="true"/>
+            
+        </lightning:recordEditForm>
+        <br />
+        <br />
+        
+        <aura:if isTrue="{!v.showAddLeadBtn}">
+            
+            <lightning:button variant="brand" label="Add Additional Person" onclick="{!c.fireAddFormEvent}"/>
+        </aura:if>
+        
+    </lightning:card>
+    
+    
+</aura:component>
