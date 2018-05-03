@@ -1,0 +1,3 @@
+<aura:event type="COMPONENT" description="Notifies listeners to add additional lead form" >
+    <aura:attribute name="newCount" type="Decimal" />
+</aura:event>
