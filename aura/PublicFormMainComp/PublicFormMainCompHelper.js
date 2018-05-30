@@ -1,8 +1,8 @@
 ({
-	saveLeads : function(cmp, leadArr) {
+    saveLeads : function(cmp, leadArr) {
         var action = cmp.get("c.createLeads");
         action.setParams({ newLeads : leadArr });
-
+        
         action.setCallback(this, function(response) {
             var state = response.getState();
             if (state === "SUCCESS") {
@@ -19,6 +19,7 @@
                     if(uiMsgCmp){
                         uiMsgCmp.set('v.severity', 'confirm');
                     }
+                    
                 }
                 else{
                     //alert('Error during contact creation: ' + res);
@@ -34,35 +35,35 @@
                         uiMsgCmp.set('v.severity', 'error');
                     }
                 }
-
+                
             }
             else if (state === "INCOMPLETE") {
                 // do something
             }
-            else if (state === "ERROR") {
-                var errors = response.getError();
-                if (errors) {
-                    if (errors[0] && errors[0].message) {
-                        console.log("Error message: " + 
-                                 errors[0].message);
+                else if (state === "ERROR") {
+                    var errors = response.getError();
+                    if (errors) {
+                        if (errors[0] && errors[0].message) {
+                            console.log("Error message: " + 
+                                        errors[0].message);
+                        }
+                    } else {
+                        console.log("Unknown error");
                     }
-                } else {
-                    console.log("Unknown error");
                 }
-            }
             
             cmp.set('v.showSpinner', false);
         });
-
+        
         $A.enqueueAction(action);
     },
     
     missingInputs : function(lead){
         
         if(lead.FirstName && lead.LastName && lead.Company && lead.Email && lead.Phone)
-           return false; 
+            return false; 
         else
-           return true;
+            return true;
     },
     
     displayErrorOnLeadForm : function(cmpErrArr, mainCmp){

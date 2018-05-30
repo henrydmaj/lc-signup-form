@@ -1,0 +1,4 @@
+<aura:event type="COMPONENT" description="Notifies listener to remove latest added form">
+	<aura:attribute name="currentCnt" type="Decimal" />
+    <aura:attribute name="previousCnt" type="Decimal" />
+</aura:event>

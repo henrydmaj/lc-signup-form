@@ -36,6 +36,36 @@
         
 	},
     
+    handleRemoveLeadEvent : function(component, event, helper){
+    	console.log('handling remove form event');
+        var currCnt = parseInt(event.getParam("currentCnt"));
+        var prevCnt = event.getParam("previousCnt");
+        var body = component.get('v.body');
+        var originalBodyLength = body.length;
+        
+        console.log('current index: ' + currCnt);
+        console.log('previous count: ' + prevCnt);
+        console.log('body length: ' + body.length);
+
+        //remove component by current count as index
+        body.splice(currCnt, 1);
+        
+        //push updated body back to component
+        component.set("v.body", body);
+        
+                
+        var prevFormCmp = component.find('cntFrm' + prevCnt);
+        
+        if(prevFormCmp){
+            prevFormCmp.set('v.showAddLeadBtn', true);
+        }
+        
+        var personCnt = component.get('v.personCnt');
+        --personCnt;
+        component.set('v.personCnt', personCnt);
+        
+    },
+    
     saveLeadsClick : function(component, event, helper){
         
         component.set('v.showSpinner', true);

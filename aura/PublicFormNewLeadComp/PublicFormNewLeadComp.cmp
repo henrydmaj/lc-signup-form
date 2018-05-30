@@ -2,12 +2,12 @@
     <aura:attribute name="count" type="Decimal" />
     <aura:attribute name="newLead" type="Lead" default="{'sobjectType':'Lead'}"/>
     <aura:attribute name="showAddLeadBtn" type="Boolean" default="true"/>
-    <aura:attribute name="showRemoveLeadBtn" type="Boolean" default="false"/>
     <aura:attribute name="showMsg" type="Boolean" default="false"/>
     <aura:attribute name="errMsg" type="String" />
     
-    <aura:registerEvent name="addFormEvent" type="c:addLeadFormEvent"/>    
-    
+    <aura:registerEvent name="addFormEvent" type="c:addLeadFormEvent"/>
+	<aura:registerEvent name="removeFormEvent" type="c:removeLeadFormEvent"/>    
+  
     <lightning:card >
         <aura:set attribute="title">
             New Sign-up ({!v.count})
@@ -31,6 +31,9 @@
         <aura:if isTrue="{!v.showAddLeadBtn}">
             
             <lightning:button variant="brand" label="Add Additional Person" onclick="{!c.fireAddFormEvent}"/>
+            <aura:if isTrue="{!v.count > 1}">
+            	<lightning:button variant="destructive" label="Remove Person" onclick="{!c.fireRemoveFormEvent}" />    
+            </aura:if>
         </aura:if>
         
     </lightning:card>

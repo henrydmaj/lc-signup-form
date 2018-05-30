@@ -1,0 +1,29 @@
+<apex:page standardStylesheets="false" showHeader="false" sidebar="false">
+    
+    <apex:includeLightning />
+    
+    <div id="lightning">
+        
+    </div>
+    
+    <script type="text/javascript">
+    
+    	   $Lightning.use("c:PublicFormLtngOutApp",    // name of the Lightning app
+        function() {                  // Callback once framework and app loaded
+            $Lightning.createComponent(
+                "c:PublicFormMainComp", // top-level component of your app
+                { },                  // attributes to set on the component when created
+                "lightning",   // the DOM location to insert the component
+                function(cmp) {
+                    console.log('component created');
+                }
+            );
+        },
+        'https://tccloudlab1-developer-edition.na40.force.com/signup'  // Community endpoint
+    );
+    
+
+    
+    </script>
+    
+</apex:page>

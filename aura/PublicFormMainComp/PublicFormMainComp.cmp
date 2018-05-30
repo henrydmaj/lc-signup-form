@@ -6,7 +6,11 @@
     <aura:attribute name="showMessage" type="Boolean" default="false" />
     <aura:attribute name="showForm" type="Boolean" default="true" />
     <aura:attribute name="message" type="String" />
-    <aura:handler name="addFormEvent" event="c:addLeadFormEvent" action="{!c.handleAddLeadEvent}"/>
+    
+    <!--Event Handlers-->
+    <aura:handler name="addFormEvent" event="c:addLeadFormEvent" action="{!c.handleAddLeadEvent}" />
+    <aura:handler name="removeFormEvent" event="c:removeLeadFormEvent" action="{!c.handleRemoveLeadEvent}" />
+    
     
     
     <aura:if isTrue="{!v.showSpinner}" aura:id="spinnerSection">
